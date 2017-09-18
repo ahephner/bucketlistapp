@@ -1,6 +1,18 @@
 //handle sign in and out
 var User = require('../models/user');
+var jwt=require('jwt-simple');
+var config = require('../config');
 
+
+//issuing a JSON webtoken below
+//iat (issued at) use basic js date method to get time with timestamp variable to pass in as the vaule for iat prop
+//sub (subject) makes user.id a principle this way if the user changes their email down the road they still get stored info becasue we issue the token at the creation based on user.id which never changes. 
+
+
+function createUserToken(user){
+	var timestamp = new Date().getTime();
+	return jwt.encode({sub: user.id, iat: timestamp}, config.secret)
+}
 
 exports.signup = function(req, res, next){
 	//1grab incomming request using two variables email/password
@@ -32,7 +44,7 @@ exports.signup = function(req, res, next){
 			user.save(function(err){
 				if(err) {return next(err);}
 				//4 Resond to request indidcating the user was created
-				res.json({success:true});
+				res.json({token: createUserToken(user)});
 			});
 	});
 
