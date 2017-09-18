@@ -4,7 +4,7 @@ var passport = require('passport');
 var User = require('./models/user');
 
 var requireAuth = passport.authenticate('jwt', {session: false});
-
+var requireSignin = passport.authenticate('local', {session: false});
 
 module.exports = function(app){//sets routes
 		
@@ -13,6 +13,7 @@ module.exports = function(app){//sets routes
 		});
 
 	app.post('/signup', Auth.signup);
+	app.post('/signin', requireSignin, Auth.signin);
 }
 // 	app.get('/', function(req, res, next){
 // 		res.send("HELLO HOMEPAGE");

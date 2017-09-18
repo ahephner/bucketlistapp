@@ -24,6 +24,16 @@ userSchema.pre('save', function(next){
 		});
 	});
 });
+
+userSchema.methods.comparePassword = function(candidatePassword, callback){
+	//this.password is our hashed and salted password
+	bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+		//if there was an error, return the callback with the error
+		if (err) {return callback(err);}
+		//otherwise call the callback
+		callback(null, isMatch);
+	});
+}
 //this tells mongoose that there is a new Schema called 'userSchema'
 //which corresponds to a collection called 'user' (the first parameter)
 var model = mongoose.model('user', userSchema);

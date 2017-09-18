@@ -13,7 +13,11 @@ function createUserToken(user){
 	var timestamp = new Date().getTime();
 	return jwt.encode({sub: user.id, iat: timestamp}, config.secret)
 }
-
+exports.signin = function(req, res, next){
+	//User has already had their email and pw auth
+	//we just need to give them a token 
+	res.send({token: createUserToken(req.user) });
+}
 exports.signup = function(req, res, next){
 	//1grab incomming request using two variables email/password
 	var email = req.body.email;
