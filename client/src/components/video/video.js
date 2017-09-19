@@ -5,7 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './search-bar';
 import VideoDetail from './video-detail';
 
-const API_KEY = 'AIzaSyDT9oGUD6bFKwgcrQWl8EfBZqSJH4wKdwA'
+const API_KEY = 'AIzaSyDT9oGUD6bFKwgcrQWl8EfBZqSJH4wKdwA';
 
 class Video extends Component{
 	constructor(props){
@@ -25,7 +25,7 @@ videoSearch(term){
 	});
 }
 render() {
-	const videoSearch=_.debounce((term)=>{ this.videoSearch(term)}, 300);
+	const videoSearch=_.debounce((term)=>{ this.videoSearch(term)}, 1800);
 	 return (
 		<div>
 			<SearchBar onSearchTermChange={videoSearch} />
