@@ -1,23 +1,14 @@
-//Action Constant Names always requires the const and type
-//the const allow us to use this action later on in other places of the app
-//action example
-// const SELECT_TEAM = "SELECT_TEAM"
-// {
-// 	type: SELECT_TEAM, 
-// 	payload: team 
-// }
+import axios from 'axios';
 
+export const CREATE_POSTS = 'CREATE_POSTS';
 
-//action constant names 
-// const SELECT_BAND = 'SELECT_BAND';
+const Root_URL = 'http://rest.learn.code.academy/api/aj';
 
-// export function selectBand(band){
-// 	console.log("You have selected", band.name);
-// 	//selectBand is an ActionCreator, it needcds to return an acion
-// 	//Action is a object that must have a type of properity
-// return {
-// 	type: SELECT_BAND, 
-// 	payload: band 
-//   };	
-// }
-
+export function createPost(props){
+	//ROOT_URL 
+	const request = axios.post(`${Root_URL}/posts`, props);
+	return{
+		type: CREATE_POSTS,
+		payload: request
+	};
+}
