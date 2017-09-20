@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// export const CREATE_POSTS = 'CREATE_POSTS';
+// 
 
 // const ROOT_URL = 'http://rest.learn.code.academy/api/aj';
 
@@ -19,6 +19,11 @@ export function createPost(props){
 export function signinUser ({email, password}){
 	return function(dispatch){
 		axios.post(`${ROOT_URL}/signin`, {email, password})
+			.then(response =>{
+				browserHistory.push('/newitem');
+			})
+				.catch(() => {
 
+				});
 	}
 }
