@@ -5,11 +5,11 @@
 //reducer would return "undefined", which is illegal in redux, so we default the state
 //argument to null 
 
-export default function(state = null, action) {
+// export default function(state = null, action) {
 
-	switch(action.type) {
-		case 'SELECT_BAND':
-		 return action.payload;
-	}
-	return state; 
-}
+// 	switch(action.type) {
+// 		case 'SELECT_BAND':
+// 		 return action.payload;
+// 	}
+// 	return state; 
+// }

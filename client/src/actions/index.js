@@ -9,15 +9,15 @@
 
 
 //action constant names 
-const SELECT_BAND = 'SELECT_BAND';
+// const SELECT_BAND = 'SELECT_BAND';
 
-export function selectBand(band){
-	console.log("You have selected", band.name);
-	//selectBand is an ActionCreator, it needcds to return an acion
-	//Action is a object that must have a type of properity
-return {
-	type: SELECT_BAND, 
-	payload: band 
-  };	
-}
+// export function selectBand(band){
+// 	console.log("You have selected", band.name);
+// 	//selectBand is an ActionCreator, it needcds to return an acion
+// 	//Action is a object that must have a type of properity
+// return {
+// 	type: SELECT_BAND, 
+// 	payload: band 
+//   };	
+// }
 
