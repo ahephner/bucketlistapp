@@ -13,7 +13,7 @@ module.exports = function(app){
 	app.post('/signin', requireSignin, Auth.signin);
 	app.post('/newitem', requireAuth, BucketList.addBucketList);
 	app.get('/items', requireAuth, BucketList.fetchBucketLists);
-
+	app.delete('/items/:id', requireAuth, BucketList.deleteBucketList);
 }
 // 	app.get('/', function(req, res, next){
 // 		res.send("HELLO HOMEPAGE");

@@ -36,3 +36,16 @@ exports.fetchBucketLists = function(req, res) {
     }
   );
 }
+
+exports.deleteBucketList = function(req, res) {
+  var specificBucketList = req.params.id;
+  BucketList.remove({_id: specificBucketList})
+     .then(
+      function deleteSuccess(data){
+        res.json(data);
+      }, 
+      function deleteError(err) {
+        res.send(500, err.message);
+      }
+    );
+}
