@@ -17,6 +17,7 @@ class ListShow extends Component {
 			post : {}
 		}
 	}
+
 	componentWillMount() {
 		//todo - add the axios call here
 		//this.props.fetchPost(this.props.params.id);
@@ -54,7 +55,7 @@ class ListShow extends Component {
 				<div id="space"></div>
 				<p>{post.content}</p>
 				<Link to="/items" className="btn btn-primary">Back to Post List</Link>
-				
+				<Link to={`/updateitem/${this.props.params.id}`} className="btn btn-info">Update List</Link>
 				<button className="btn btn-danger"
 					onClick={this.onDeleteClick.bind(this)}>
 					Delete Post
