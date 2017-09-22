@@ -3,22 +3,24 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
-	email: {
+		email: {
 		type: String, 
-		unique: true, //this unique wont allow duplicates for email signups aka 1 email = 1 account
-		lowercase: true  //mongo does not know the difference between cases so we account for that on our end so if you try to 	AJ@FMC.COM and aj@fmc.com  mongo thinks these are two different users so the lowercase fixs that 
-
-	} ,
-	password: String
+		unique: true, 
+		lowercase: true
+	},
+		password: String
 });
 
+//Encrypt password after saving
 userSchema.pre('save', function(next){
-	var user = this; 
-	bcrypt.genSalt(10, function(err, salt){
-		if(err) {return next(err);}
+	var user = this;
 
+	bcrypt.genSalt(10, function(err, salt){
+		if(err) { return next(err); }
+		
 		bcrypt.hash(user.password, salt, null, function(err, hash){
-			if (err) {return next(err);}
+			if (err) { return next(err); }
+		
 			user.password = hash;
 			next();
 		});
@@ -26,16 +28,17 @@ userSchema.pre('save', function(next){
 });
 
 userSchema.methods.comparePassword = function(candidatePassword, callback){
+
 	//this.password is our hashed and salted password
-	bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+
+     bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
 		//if there was an error, return the callback with the error
-		if (err) {return callback(err);}
+		if (err) { return callback(err); }
 		//otherwise call the callback
 		callback(null, isMatch);
 	});
 }
-//this tells mongoose that there is a new Schema called 'userSchema'
-//which corresponds to a collection called 'user' (the first parameter)
+
 var model = mongoose.model('user', userSchema);
 
-module.exports = model; 
+module.exports = model;

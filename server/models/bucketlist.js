@@ -7,22 +7,21 @@ var BucketListSchema = new Schema({
 		default: ''
 	},
 	topic: {
-		type: String, 
+		type: String,
 		default: ''
 	},
 	url: {
-		type: String, 
+		type: String,
 		default: ''
 	},
 	content: {
-		type: String, 
+		type: String,
 		default: ''
 	},
 	specificUser: {
 		type: String,
 		default: ''
 	}
-
 });
 
 module.exports = mongoose.model('BucketList', BucketListSchema);
